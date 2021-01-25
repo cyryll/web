@@ -1,10 +1,25 @@
 import { useState } from 'react'
+import Button from './Button'
 import { Link } from 'react-router-dom'
+import './Navbar.css'
 
 const Navbar = () => {
     const [click, setClick] = useState(false)
+    const [button,setButton] = useState(true)
+
     const handleClick = () => setClick(!click)
-    const closeMobilemenu = () => setClick(click)
+    const closeMobileMenu = () => setClick(click)
+
+    const showButton = () => {
+        if(window.innerWidth <= 960){
+            setButton(false);
+        }
+        else{
+            setButton(true);
+        }
+    }
+
+    window.addEventListener('resize', showButton)
 
     return (
         <>
@@ -18,28 +33,29 @@ const Navbar = () => {
                     <div className="menu-icon" onClick={handleClick}>
                         <i className={click ? 'fa fa-times' : 'fa fa-bars'} />
                     </div>
-                    <ul className={click ? "nav-menu-active" : "nav-menu"}>
+                    <ul className={click ? "nav-menu active" : "nav-menu"}>
                         <li className="nav-item">
                             <Link to="/" className="nav-links"
-                                onClick={closeMobilemenu}>
+                                onClick={closeMobileMenu}>
                                 Home</Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/about" className="nav-links"
-                                onClick={closeMobilemenu}>
+                                onClick={closeMobileMenu}>
                                 About</Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/services" className="nav-links"
-                                onClick={closeMobilemenu}>
+                                onClick={closeMobileMenu}>
                                 Services</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/" className="nav-links-mobile"
-                                onClick={closeMobilemenu}>
+                            <Link to="/signup" className="nav-links-mobile"
+                                onClick={closeMobileMenu}>
                                 Sign Up</Link>
                         </li>
                     </ul>
+                    {button && <Button buttonStyle = "btn--outline">Sign Up</Button>}
                 </div>
             </nav>
         </>
