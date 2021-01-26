@@ -1,9 +1,11 @@
+import Cards from '../Cards'
 import HeroSection from '../HeroSection'
 
 const Home = () => {
     return (
         <>
-          <HeroSection/>  
+          <HeroSection/>
+          <Cards/>  
         </>
     )
 }
