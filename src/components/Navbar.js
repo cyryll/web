@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import Button from './Button'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
@@ -8,7 +8,7 @@ const Navbar = () => {
     const [button,setButton] = useState(true)
 
     const handleClick = () => setClick(!click)
-    const closeMobileMenu = () => setClick(click)
+    const closeMobileMenu = () => setClick(false)
 
     const showButton = () => {
         if(window.innerWidth <= 960){
@@ -19,6 +19,10 @@ const Navbar = () => {
         }
     }
 
+    //show signup button only once
+    useEffect(() => {
+        showButton()
+    }, [])
     window.addEventListener('resize', showButton)
 
     return (
@@ -26,7 +30,7 @@ const Navbar = () => {
             <nav className="navbar">
                 <div className="navbar-container">
                     <Link to="/"
-                        className="navbar-logo">
+                        className="navbar-logo" onClick={closeMobileMenu}>
                         CPO
                         <i className="fa fa-ravelry" />
                     </Link>

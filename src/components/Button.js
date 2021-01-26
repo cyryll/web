@@ -7,8 +7,8 @@ const STYLES = ['btn--primary', 'btn--outline']
 const SIZES = ['btn--medium', 'btn--large']
 
 const Button = ({ children, type, onClick, buttonStyle, buttonSize }) => {
-    const checkButtonStyle = STYLES.includes({ buttonStyle } ? buttonStyle : STYLES[0])
-    const checkButtonSizes = SIZES.includes({ buttonSize } ? buttonSize : SIZES[0])
+    const checkButtonStyle = STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0]
+    const checkButtonSizes = SIZES.includes(buttonSize) ? buttonSize : SIZES[0]
 
     return (
         <Link to="/signup" className="btn-mobile">
